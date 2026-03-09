@@ -1,2 +1,9 @@
-// Shared config stub for zero-tolerance framework
-window.CALCHQ_CONFIG = window.CALCHQ_CONFIG || {};
+window.SITE_CONFIG = {
+  ADS_ACTIVE: false,
+  SPONSOR_ACTIVE: false,
+  ADSENSE_PUB_ID: "ca-pub-7744853829365165",
+  AD_SLOT_TOP: "",
+  AD_SLOT_BOTTOM: "",
+  SPONSOR_TEXT: "",
+  SPONSOR_HREF: ""
+};
