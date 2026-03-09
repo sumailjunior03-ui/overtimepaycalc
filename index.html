@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overtime Pay Calculator | OvertimePayCalc.com</title>
+  <meta name="description" content="Calculate your overtime pay instantly. Enter your hourly wage, regular hours, and overtime hours to see your total weekly earnings including time-and-a-half." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://overtimepaycalc.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Overtime Pay Calculator | OvertimePayCalc.com" />
+  <meta property="og:description" content="Calculate your overtime pay instantly. Enter your hourly wage, regular hours, and overtime hours to see your total weekly earnings including time-and-a-half." />
+  <meta property="og:url" content="https://overtimepaycalc.com/" />
+  <meta name="google-adsense-account" content="ca-pub-7744853829365165" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Overtime Pay Calculator",
+    "url": "https://overtimepaycalc.com",
+    "description": "Calculate overtime pay and total weekly earnings based on hourly wage and hours worked.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" }
+  }
+  </script>
+  <script src="network.js" defer></script>
+  <script src="footer.js" defer></script>
+  <script src="ads.js" defer></script>
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo">OvertimePayCalc<span class="logo-dot">.com</span></a>
+      <nav class="header-nav">
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://calc-hq.com" target="_blank" rel="noopener">Calc-HQ ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-label">Free Financial Tool</div>
+        <h1>Overtime Pay <span class="accent">Calculator</span></h1>
+        <p class="hero-sub">Enter your hourly wage and hours worked to instantly calculate your regular pay, overtime pay, and total weekly earnings under U.S. time-and-a-half rules.</p>
+      </div>
+      <div class="hero-rule"></div>
+    </section>
+
+    <!-- ─── 01: CALCULATOR ─── -->
+    <section class="section calc-section" id="calculator">
+      <div class="container">
+        <div class="section-tag">01 — Tool</div>
+        <h2>Calculate Your Overtime Pay</h2>
+
+        <div class="calc-grid">
+          <div class="calc-inputs">
+
+            <div class="input-group">
+              <label for="hourlyWage">Hourly Wage</label>
+              <div class="input-wrap">
+                <span class="input-prefix">$</span>
+                <input type="number" id="hourlyWage" placeholder="20.00" min="0" step="0.01" />
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="regularHours">Regular Hours Worked</label>
+              <input type="number" id="regularHours" placeholder="40" min="0" step="0.5" />
+            </div>
+
+            <div class="input-group">
+              <label for="overtimeHours">Overtime Hours Worked</label>
+              <input type="number" id="overtimeHours" placeholder="5" min="0" step="0.5" />
+            </div>
+
+            <div class="toggle-group">
+              <label class="toggle-label">
+                <input type="checkbox" id="doubleTime" />
+                <span class="toggle-switch"></span>
+                <span class="toggle-text">Include Double-Time Hours</span>
+              </label>
+            </div>
+
+            <div class="double-time-row" id="doubleTimeRow" style="display:none;">
+              <div class="input-group">
+                <label for="doubleTimeHours">Double-Time Hours</label>
+                <input type="number" id="doubleTimeHours" placeholder="0" min="0" step="0.5" />
+              </div>
+            </div>
+
+            <button class="btn-calc" id="calcBtn" onclick="calculate()">Calculate Pay →</button>
+
+          </div>
+
+          <div class="calc-results" id="calcResults">
+            <div class="result-header">Your Pay Breakdown</div>
+
+            <div class="result-row">
+              <span class="result-label">Regular Pay</span>
+              <span class="result-value" id="regularPay">—</span>
+            </div>
+            <div class="result-divider"></div>
+            <div class="result-row">
+              <span class="result-label">Overtime Rate</span>
+              <span class="result-value" id="overtimeRate">—</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Overtime Pay</span>
+              <span class="result-value" id="overtimePay">—</span>
+            </div>
+
+            <div class="double-time-results" id="doubleTimeResults" style="display:none;">
+              <div class="result-divider"></div>
+              <div class="result-row">
+                <span class="result-label">Double-Time Rate</span>
+                <span class="result-value" id="doubleTimeRate">—</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Double-Time Pay</span>
+                <span class="result-value" id="doubleTimePay">—</span>
+              </div>
+            </div>
+
+            <div class="result-divider result-divider--heavy"></div>
+            <div class="result-row result-row--total">
+              <span class="result-label">Total Weekly Pay</span>
+              <span class="result-value result-value--total" id="totalPay">—</span>
+            </div>
+
+            <div class="result-note">Based on U.S. FLSA time-and-a-half standard. Results are estimates only — does not account for taxes or deductions.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AdSense -->
+    <div class="ad-unit container">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7744853829365165" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- ─── 02: EXAMPLE CALCULATION ─── -->
+    <section class="section example-section" id="example">
+      <div class="container">
+        <div class="section-tag">02 — Example</div>
+        <h2>Worked Example</h2>
+        <p class="section-intro">Here's a step-by-step breakdown using a standard workweek. Follow each step to understand exactly how the calculator arrives at your total pay.</p>
+
+        <div class="example-box">
+          <div class="example-scenario">
+            <div class="example-scenario-label">Scenario</div>
+            <div class="example-facts">
+              <div class="fact"><span>Hourly Wage</span><strong>$20.00</strong></div>
+              <div class="fact"><span>Regular Hours</span><strong>40 hrs</strong></div>
+              <div class="fact"><span>Overtime Hours</span><strong>5 hrs</strong></div>
+            </div>
+          </div>
+
+          <div class="example-steps">
+            <div class="step">
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <div class="step-title">Calculate Regular Pay</div>
+                <div class="step-formula">$20.00 × 40 hours</div>
+                <div class="step-result">= <strong>$800.00</strong></div>
+                <p class="step-note">Regular pay is your hourly wage multiplied by the standard hours you worked in the week — typically 40 hours for a full-time employee.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <div class="step-title">Determine the Overtime Rate</div>
+                <div class="step-formula">$20.00 × 1.5</div>
+                <div class="step-result">= <strong>$30.00 / hour</strong></div>
+                <p class="step-note">Under the U.S. Fair Labor Standards Act (FLSA), overtime hours must be paid at a minimum of 1.5× your regular hourly rate. This is the origin of the phrase "time and a half."</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <div class="step-title">Calculate Overtime Pay</div>
+                <div class="step-formula">$30.00 × 5 hours</div>
+                <div class="step-result">= <strong>$150.00</strong></div>
+                <p class="step-note">Multiply your overtime rate by the number of overtime hours worked to get your total overtime pay for the week.</p>
+              </div>
+            </div>
+
+            <div class="step step--total">
+              <div class="step-num">04</div>
+              <div class="step-content">
+                <div class="step-title">Total Weekly Gross Pay</div>
+                <div class="step-formula">$800.00 + $150.00</div>
+                <div class="step-result">= <strong>$950.00</strong></div>
+                <p class="step-note">Add regular pay and overtime pay together for your gross weekly earnings. This is your income before income tax withholding, Social Security, Medicare, or any other deductions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 03: FORMULA EXPLANATION ─── -->
+    <section class="section formula-section" id="formula">
+      <div class="container">
+        <div class="section-tag">03 — Formula</div>
+        <h2>How Overtime Pay Works</h2>
+        <p class="section-intro">U.S. overtime pay is governed by the Fair Labor Standards Act (FLSA). Understanding the formulas helps you verify your paycheck and make informed scheduling decisions.</p>
+
+        <div class="formula-grid">
+          <div class="formula-card">
+            <div class="formula-card-label">Regular Pay</div>
+            <div class="formula-display">Regular Pay = Hourly Wage × Regular Hours</div>
+            <p>Your base weekly earnings for standard hours worked. Most salaried-equivalent hourly workers are scheduled for 40 hours before overtime thresholds apply, though some industries or contracts set different limits.</p>
+          </div>
+
+          <div class="formula-card">
+            <div class="formula-card-label">Overtime Rate</div>
+            <div class="formula-display">Overtime Rate = Hourly Wage × 1.5</div>
+            <p>Federal law sets the minimum overtime rate at 1.5× the regular rate for hours over 40 per workweek. Some states — like California — require overtime after 8 hours in a single day, and some employers voluntarily pay 2× for Sundays or holidays.</p>
+          </div>
+
+          <div class="formula-card">
+            <div class="formula-card-label">Overtime Pay</div>
+            <div class="formula-display">Overtime Pay = Overtime Rate × Overtime Hours</div>
+            <p>Your overtime earnings are calculated separately and then added to your regular pay. This makes the premium visible and easy to verify against a pay stub.</p>
+          </div>
+
+          <div class="formula-card formula-card--total">
+            <div class="formula-card-label">Total Weekly Pay</div>
+            <div class="formula-display">Total Pay = Regular Pay + Overtime Pay (+ Double-Time Pay if applicable)</div>
+            <p>Your gross weekly pay before taxes. To model your net take-home pay, pair this with the 1099 vs W-2 take-home calculator or estimate quarterly tax obligations with the quarterly tax calculator.</p>
+          </div>
+        </div>
+
+        <div class="formula-note">
+          <strong>When do people use an overtime calculator?</strong> Workers use this tool when reviewing a weekly paycheck, planning how many extra shifts to take, or negotiating a wage increase with a new employer. Payroll managers and small business owners use it to estimate labor costs before approving extended shifts. If your income is primarily self-employed, the freelance income calculator gives you a more accurate annual estimate that accounts for self-employment tax.
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 04: COMMON SCENARIOS ─── -->
+    <section class="section scenarios-section" id="scenarios">
+      <div class="container">
+        <div class="section-tag">04 — Scenarios</div>
+        <h2>Common Overtime Situations</h2>
+        <p class="section-intro">An overtime pay calculator is useful in more situations than most people realize. Here are the most frequent real-world use cases.</p>
+
+        <div class="scenarios-grid">
+
+          <div class="scenario-card">
+            <div class="scenario-icon">⏱</div>
+            <h3>Estimating Earnings After Extra Shifts</h3>
+            <p>The most common use. If you picked up extra shifts or stayed late this week, plug in your hours to see what you'll earn before payroll runs. Workers in healthcare, retail, manufacturing, and logistics use this regularly to plan budgets and track earnings week to week.</p>
+          </div>
+
+          <div class="scenario-card">
+            <div class="scenario-icon">🧾</div>
+            <h3>Verifying a Paycheck</h3>
+            <p>If your paycheck amount doesn't look right, running the numbers yourself is the quickest way to catch a payroll error. Calculate what you should have earned, compare it to your pay stub line by line, and flag discrepancies with your HR or payroll department. Overtime miscalculations happen more often than most workers expect.</p>
+          </div>
+
+          <div class="scenario-card">
+            <div class="scenario-icon">📅</div>
+            <h3>Planning a Work Schedule Around OT</h3>
+            <p>Some workers deliberately structure hours to maximize overtime earnings. Use the calculator to model different combinations — 44 hours vs. 48 hours, for example — and compare the take-home impact. For payroll cycle timing, see Payroll Date Checker to understand when those earnings will actually hit your account.</p>
+          </div>
+
+          <div class="scenario-card">
+            <div class="scenario-icon">💼</div>
+            <h3>Estimating Payroll Costs for Employers</h3>
+            <p>Small business owners and managers use overtime calculators to estimate labor costs before approving extended hours. If you're heading into a busy period and need staff beyond 40 hours per week, this gives you a fast gross payroll estimate per employee before running full payroll calculations.</p>
+          </div>
+
+          <div class="scenario-card">
+            <div class="scenario-icon">📊</div>
+            <h3>Comparing Hourly + OT vs. Salary Offers</h3>
+            <p>Deciding between an hourly job with regular overtime and a salaried role requires comparing total annual compensation, not just base rates. Combine this calculator with the hourly to salary converter and the total compensation calculator to see which offer actually pays more over a full year.</p>
+          </div>
+
+          <div class="scenario-card">
+            <div class="scenario-icon">📈</div>
+            <h3>Tax Planning for High-OT Periods</h3>
+            <p>Heavy overtime weeks can temporarily push your withholding into a higher bracket. If you're consistently working significant overtime, it's worth estimating how much of that additional gross income will go toward taxes. Tools like a freelance income calculator or paycheck comparison calculator can help you plan for how extra earnings fit into your overall income picture.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- AdSense -->
+    <div class="ad-unit container">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7744853829365165" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- ─── 05: RELATED CALCULATORS ─── -->
+    <section class="section related-section" id="related">
+      <div class="container">
+        <div class="section-tag">05 — Network</div>
+        <h2>Related Financial Calculators</h2>
+        <p class="section-intro">Overtime pay is one piece of your total income picture. The tools below — all part of the <a href="https://calc-hq.com" target="_blank" rel="noopener">Calc-HQ financial utility network</a> — cover the full range of income, tax, and compensation calculations.</p>
+
+        <ul id="related-calculators" class="related-calculators"></ul>
+      </div>
+    </section>
+
+    <!-- ─── 06: FAQ ─── -->
+    <section class="section faq-section" id="faq">
+      <div class="container">
+        <div class="section-tag">06 — FAQ</div>
+        <h2>Frequently Asked Questions</h2>
+        <p class="section-intro">Common questions about overtime pay rules, eligibility, and calculation methods.</p>
+
+        <div class="faq-list">
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              What qualifies as overtime pay?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Under the federal Fair Labor Standards Act (FLSA), overtime applies to any hours worked beyond 40 in a single workweek for non-exempt employees. The minimum overtime rate is 1.5× the employee's regular rate of pay. Some states have stricter rules — California, for example, requires overtime for hours beyond 8 in a single workday, regardless of the weekly total. Overtime does not automatically apply to all workers; exempt employees (typically salaried workers above a certain income threshold in executive, administrative, or professional roles) are not entitled to FLSA overtime.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Is overtime always paid at time-and-a-half?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Time-and-a-half (1.5×) is the federal minimum, but it is not always the actual rate. Many employers, union contracts, or state laws require higher overtime rates. Double-time (2×) is common in California for hours beyond 12 in a single day and for all hours on the seventh consecutive day of work in a workweek. Some employers also voluntarily offer double-time for holidays or Sundays. This calculator supports both time-and-a-half and double-time — use the toggle to include double-time hours in your calculation.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Do salaried employees get overtime pay?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              It depends on whether the employee is classified as exempt or non-exempt under the FLSA. Salaried employees earning above the federal salary threshold (currently $684/week as of 2024) who work in executive, administrative, or professional capacities are typically exempt and do not receive overtime. However, salaried non-exempt employees — those earning below the threshold or in certain job categories — are still entitled to overtime for hours over 40. If you're unsure of your classification, your HR department or the Department of Labor's website can clarify your status.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              How is overtime calculated for hourly workers?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              For a standard hourly worker, overtime is calculated in three steps: (1) multiply your hourly rate by 1.5 to get your overtime rate, (2) multiply that overtime rate by the number of overtime hours worked, and (3) add your overtime pay to your regular pay for the total. Example: At $18/hr, your overtime rate is $27/hr. If you work 43 hours in a week, your regular pay is $18 × 40 = $720, your overtime pay is $27 × 3 = $81, and your total gross pay is $801. This calculator handles all three steps automatically.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Does overtime pay affect my taxes?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Overtime pay is taxed as ordinary income — there is no special tax rate for it. However, earning a higher gross income in a given pay period may result in higher withholding for that paycheck, since withholding is often calculated as if you'll earn that amount every pay period. This doesn't mean you'll owe more tax annually — your actual liability is based on your total annual income. If you're working significant overtime regularly and want to estimate your quarterly obligations, the quarterly tax calculator can help you plan ahead.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              What is the difference between overtime and double-time?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Overtime (time-and-a-half) is 1.5× your regular hourly rate and applies to hours beyond 40 per week under federal law. Double-time is 2× your regular hourly rate and is not required by federal law — it applies in specific situations defined by state law or employer policy. In California, double-time kicks in after 12 hours in a single day or on the seventh consecutive workday in a week. Some companies also offer double-time voluntarily for holidays or emergency call-ins. This calculator supports both rates — enable the double-time toggle to add those hours to your calculation.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <section class="calculator-explanation">
+    <h2>Example Overtime Pay Calculation</h2>
+    <p>This calculator estimates overtime pay using the most common overtime rule: time-and-a-half (1.5× the hourly rate).</p>
+    <p><strong>Example:</strong></p>
+    <ul>
+      <li>Hourly rate: $20</li>
+      <li>Overtime hours: 10</li>
+      <li>Overtime multiplier: 1.5×</li>
+    </ul>
+    <p><strong>Calculation:</strong></p>
+    <p>$20 × 1.5 × 10 = <strong>$300 overtime pay</strong></p>
+    <p>This means a worker earning $20 per hour would receive an additional $300 in overtime earnings for 10 overtime hours.</p>
+  </section>
+
+  <section class="calculator-explanation">
+    <h2>Overtime Pay Formula</h2>
+    <p>Overtime pay is calculated using the following formula:</p>
+    <p><strong>Overtime Pay = Hourly Rate × Overtime Multiplier × Overtime Hours</strong></p>
+    <p>The overtime multiplier depends on employer policy or labor regulations.</p>
+    <ul>
+      <li>1.5× hourly rate — the most common overtime rule</li>
+      <li>2× hourly rate — double time, sometimes used for holidays or extended shifts</li>
+    </ul>
+    <p>This calculator allows you to estimate how much additional pay is earned when overtime hours are worked.</p>
+  </section>
+
+  <section class="calculator-explanation">
+    <h2>What This Calculator Does</h2>
+    <p>This calculator estimates regular pay, overtime pay, and total weekly earnings based on an hourly wage, regular hours, and overtime hours worked under a standard time-and-a-half overtime model.</p>
+
+    <h2>Calculation Methodology</h2>
+    <p>This calculator estimates overtime pay using a simple step-by-step process.</p>
+    <ol>
+      <li>The calculator identifies the employee's regular hourly wage.</li>
+      <li>The overtime rate is calculated as 1.5 times the regular hourly wage (time-and-a-half).</li>
+      <li>The overtime rate is multiplied by the number of overtime hours worked.</li>
+    </ol>
+    <p>The result shows the estimated overtime earnings based on the entered wage and overtime hours.</p>
+    <p>This calculator provides an estimate for planning purposes and does not account for specific employer policies, collective agreements, or regional labor regulations.</p>
+  </section>
+
+  <section class="calculator-explanation">
+    <h2>Common Overtime Pay Scenarios</h2>
+    <p>Workers often use an overtime calculator to estimate additional earnings in situations such as:</p>
+    <ul>
+      <li>Working more than the standard 40 hours per week</li>
+      <li>Calculating time-and-a-half overtime pay</li>
+      <li>Estimating double-time pay for holidays</li>
+      <li>Estimating earnings from extra shifts</li>
+      <li>Checking payroll estimates before receiving a paycheck</li>
+    </ul>
+    <p>This tool provides an estimate based on the overtime hours and pay rate entered.</p>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <a href="/" class="logo">OvertimePayCalc<span class="logo-dot">.com</span></a>
+          <p class="footer-tagline">A free financial utility for calculating overtime pay, weekly earnings, and paycheck estimates. Part of the Calc-HQ financial tools network.</p>
+          <div class="footer-contact">Partnerships: <a href="mailto:partnerships@calc-hq.com">partnerships@calc-hq.com</a></div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Related Tools</div>
+          <ul class="footer-links" id="footer-related-tools"></ul>
+        </div>
+
+        
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 OvertimePayCalc.com — For informational purposes only. Not legal or financial advice.</span>
+        <div class="footer-bottom-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="legal.html">Legal</a>
+          <a href="contact.html">Contact</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/calc.js"></script>
+
+</body>
+</html>
