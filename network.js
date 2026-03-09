@@ -14,8 +14,7 @@ var CALC_HQ_NETWORK = [
   { domain: "quarterlytaxcalc.com",    name: "QuarterlyTaxCalc",        url: "https://quarterlytaxcalc.com/",      live: true },
   { domain: "totalcompcalc.com",       name: "TotalCompCalc",           url: "https://totalcompcalc.com/",         live: true },
   { domain: "overtimepaycalc.com",     name: "OvertimePayCalc",         url: "https://overtimepaycalc.com/",       live: true },
-  { domain: "aftertaxsalarycalc.com",  name: "AfterTaxSalaryCalc",      url: "https://aftertaxsalarycalc.com/",    live: true },
-  { domain: "takehomepaycalc.com",     name: "TakeHomePayCalc",         url: "https://takehomepaycalc.com/",       live: true }
+  { domain: "aftertaxsalarycalc.com",  name: "AfterTaxSalaryCalc",      url: "https://aftertaxsalarycalc.com/",    live: true }
 ];
 
 function renderRelatedTools(listElementId) {
