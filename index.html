@@ -2,37 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="canonical" href="https://overtimepaycalc.com/" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Overtime Pay Calculator | OvertimePayCalc.com</title>
-  <meta name="description" content="Calculate your overtime pay instantly. Enter your hourly wage, regular hours, and overtime hours to see your total weekly earnings including time-and-a-half." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://overtimepaycalc.com/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Overtime Pay Calculator | OvertimePayCalc.com" />
-  <meta property="og:description" content="Calculate your overtime pay instantly. Enter your hourly wage, regular hours, and overtime hours to see your total weekly earnings including time-and-a-half." />
-  <meta property="og:url" content="https://overtimepaycalc.com/" />
+  <meta name="description" content="Calculate overtime pay, double-time pay, and total weekly earnings using hourly wage and hours worked." />
+  <meta name="robots" content="index,follow" />
   <meta name="google-adsense-account" content="ca-pub-7744853829365165" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Overtime Pay Calculator",
-    "url": "https://overtimepaycalc.com",
-    "description": "Calculate overtime pay and total weekly earnings based on hourly wage and hours worked.",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" }
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Overtime Pay Calculator",
+  "url": "https://overtimepaycalc.com",
+  "description": "Calculate overtime pay and total weekly earnings based on hourly wage and hours worked.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
   }
-  </script>
+}
+</script>
   <script src="network.js" defer></script>
   <script src="footer.js" defer></script>
-  <script src="config.js" defer></script>
   <script src="ads.js" defer></script>
+  <script src="config.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -40,14 +40,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="/" class="logo">OvertimePayCalc<span class="logo-dot">.com</span></a>
-      <nav class="header-nav">
-        <a href="index.html">Home</a>
-        <a href="faq.html">FAQ</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="legal.html">Legal</a>
-        <a href="contact.html">Contact</a>
-        <a href="https://calc-hq.com/">Calc-HQ</a>
-      </nav>
+      <nav class="header-nav"><a href="index.html" class="active" aria-current="page">Home</a><a href="about.html">About</a><a href="faq.html">FAQ</a><a href="privacy.html">Privacy</a><a href="legal.html">Legal</a><a href="contact.html">Contact</a><a href="https://calc-hq.com/">Calc-HQ</a></nav>
     </div>
   </header>
 
@@ -151,7 +144,24 @@
     </section>
 
     <!-- AdSense -->
-    <div class="ad-unit container" id="ad-slot-top"></div>
+    <div class="ad-unit container">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7744853829365165" data-ad-slot="" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      
+    </div>
+
+    <!-- ─── REQUIRED FRAMEWORK HEADINGS ─── -->
+    <section class="section calculator-explanation">
+      <div class="container">
+        <h2>When This Calculator Is Useful</h2>
+        <p>This calculator is useful when you want to estimate regular pay, overtime pay, and total weekly earnings based on your hourly wage and hours worked. It is built for hourly workers reviewing a paycheck, managers estimating labor costs, or anyone checking whether a weekly pay estimate is correct before payroll runs.</p>
+
+        <h2>What This Calculator Does</h2>
+        <p>This overtime pay calculator estimates weekly gross earnings by applying standard U.S. time-and-a-half rules. It multiplies regular hours by your hourly wage, multiplies overtime hours by 1.5× your hourly wage, and optionally multiplies double-time hours by 2× your hourly wage. The results are displayed as a clear pay breakdown showing regular pay, overtime pay, and total weekly pay.</p>
+
+        <h2>Calculation Methodology</h2>
+        <p>The calculator uses three inputs — hourly wage, regular hours, and overtime hours — and applies fixed multipliers. Regular pay equals hourly wage multiplied by regular hours. Overtime pay equals hourly wage multiplied by 1.5, then multiplied by overtime hours. If double-time is enabled, double-time pay equals hourly wage multiplied by 2, then multiplied by double-time hours. Total weekly pay is the sum of all three components. This is a gross-pay estimate only and does not account for taxes, deductions, or state-specific labor law variations.</p>
+      </div>
+    </section>
 
     <!-- ─── 02: EXAMPLE CALCULATION ─── -->
     <section class="section example-section" id="example">
@@ -304,7 +314,10 @@
     </section>
 
     <!-- AdSense -->
-    <div class="ad-unit container" id="ad-slot-bottom"></div>
+    <div class="ad-unit container">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7744853829365165" data-ad-slot="" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      
+    </div>
 
     <!-- ─── 05: RELATED CALCULATORS ─── -->
     <section class="section related-section" id="related">
@@ -390,65 +403,10 @@
       </div>
     </section>
 
+  
   </main>
 
-  <section class="calculator-explanation">
-    <h2>Example Overtime Pay Calculation</h2>
-    <p>This calculator estimates overtime pay using the most common overtime rule: time-and-a-half (1.5× the hourly rate).</p>
-    <p><strong>Example:</strong></p>
-    <ul>
-      <li>Hourly rate: $20</li>
-      <li>Overtime hours: 10</li>
-      <li>Overtime multiplier: 1.5×</li>
-    </ul>
-    <p><strong>Calculation:</strong></p>
-    <p>$20 × 1.5 × 10 = <strong>$300 overtime pay</strong></p>
-    <p>This means a worker earning $20 per hour would receive an additional $300 in overtime earnings for 10 overtime hours.</p>
-  </section>
-
-  <section class="calculator-explanation">
-    <h2>Overtime Pay Formula</h2>
-    <p>Overtime pay is calculated using the following formula:</p>
-    <p><strong>Overtime Pay = Hourly Rate × Overtime Multiplier × Overtime Hours</strong></p>
-    <p>The overtime multiplier depends on employer policy or labor regulations.</p>
-    <ul>
-      <li>1.5× hourly rate — the most common overtime rule</li>
-      <li>2× hourly rate — double time, sometimes used for holidays or extended shifts</li>
-    </ul>
-    <p>This calculator allows you to estimate how much additional pay is earned when overtime hours are worked.</p>
-  </section>
-
-  <section class="calculator-explanation">
-    <h2>What This Calculator Does</h2>
-    <p>This calculator estimates regular pay, overtime pay, and total weekly earnings based on an hourly wage, regular hours, and overtime hours worked under a standard time-and-a-half overtime model.</p>
-
-    <h2>Calculation Methodology</h2>
-    <p>This calculator estimates overtime pay using a simple step-by-step process.</p>
-    <ol>
-      <li>The calculator identifies the employee's regular hourly wage.</li>
-      <li>The overtime rate is calculated as 1.5 times the regular hourly wage (time-and-a-half).</li>
-      <li>The overtime rate is multiplied by the number of overtime hours worked.</li>
-    </ol>
-    <p>The result shows the estimated overtime earnings based on the entered wage and overtime hours.</p>
-    <p>This calculator provides an estimate for planning purposes and does not account for specific employer policies, collective agreements, or regional labor regulations.</p>
-  </section>
-
-  <section class="calculator-explanation">
-    <h2>Common Overtime Pay Scenarios</h2>
-    <p>Workers often use an overtime calculator to estimate additional earnings in situations such as:</p>
-    <ul>
-      <li>Working more than the standard 40 hours per week</li>
-      <li>Calculating time-and-a-half overtime pay</li>
-      <li>Estimating double-time pay for holidays</li>
-      <li>Estimating earnings from extra shifts</li>
-      <li>Checking payroll estimates before receiving a paycheck</li>
-    </ul>
-    <p>This tool provides an estimate based on the overtime hours and pay rate entered.</p>
-  </section>
-
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
+<footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
 
@@ -463,17 +421,21 @@
           <ul class="footer-links" id="footer-related-tools"></ul>
         </div>
 
-        
+        <div>
+          <div class="footer-col-title">Resources</div>
+          <div class="footer-resources"><a href="https://calc-hq.com" target="_blank" rel="noopener">Financial Calculator Hub</a></div>
+        </div>
 
       </div>
 
       <div class="footer-bottom">
         <span>© 2026 OvertimePayCalc.com — For informational purposes only. Not legal or financial advice.</span>
         <div class="footer-bottom-links">
+          <a href="index.html">Home</a>
           <a href="privacy.html">Privacy Policy</a>
           <a href="legal.html">Legal</a>
-          <a href="contact.html">Contact</a>
           <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
         </div>
       </div>
     </div>
