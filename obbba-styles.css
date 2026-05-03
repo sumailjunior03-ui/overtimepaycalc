@@ -1,0 +1,69 @@
+/* OBBBA Overtime Deduction page — supplementary styles */
+
+.hero-subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+/* Input groups / fieldsets */
+.input-group {
+  border: 1px solid #e8e3dc;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+
+.input-group legend {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #333;
+  padding: 0 6px;
+}
+
+.field-hint {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+  cursor: pointer;
+}
+
+/* Results */
+.results-heading {
+  font-size: 1.1rem;
+  margin: 16px 0 8px;
+  color: #1a1a1a;
+}
+
+.result-row.separator {
+  height: 4px;
+  border-bottom: 2px solid #ddd;
+  padding: 0;
+  margin: 4px 0;
+}
+
+/* Phase-out highlight */
+#phaseoutRow .result-value {
+  color: #c0392b;
+}
+
+/* Example table wider on this page */
+@media (min-width: 600px) {
+  .example-table {
+    font-size: 0.85rem;
+  }
+  .example-table th,
+  .example-table td {
+    padding: 8px 6px;
+  }
+}

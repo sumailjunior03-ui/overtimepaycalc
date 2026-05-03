@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OBBBA Overtime Deduction Calculator 2025–2028 | OvertimePayCalc.com</title>
+  <meta name="description" content="Calculate your No Tax on Overtime deduction under the One Big Beautiful Bill Act (OBBBA). See how much you can deduct from qualified overtime pay for tax years 2025–2028.">
+  <link rel="canonical" href="https://overtimepaycalc.com/obbba-overtime-deduction.html">
+  <meta name="robots" content="index, follow">
+  <meta name="google-adsense-account" content="ca-pub-7744853829365165">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="OBBBA Overtime Deduction Calculator 2025–2028 | OvertimePayCalc.com">
+  <meta property="og:description" content="Calculate your No Tax on Overtime deduction under OBBBA. Estimate your tax savings from qualified overtime pay for 2025–2028.">
+  <meta property="og:url" content="https://overtimepaycalc.com/obbba-overtime-deduction.html">
+  <meta property="og:site_name" content="OvertimePayCalc.com">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css?v=overtime-fix-0502">
+  <link rel="stylesheet" href="obbba-styles.css?v=obbba-0502">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"OBBBA Overtime Deduction Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","url":"https://overtimepaycalc.com/obbba-overtime-deduction.html","description":"Calculate the No Tax on Overtime deduction under IRC Section 225 (One Big Beautiful Bill Act) for tax years 2025–2028. Estimate your tax savings from qualified overtime premium pay.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <h1>OvertimePayCalc.com</h1>
+      <p>Know what your overtime is worth</p>
+    </div>
+    <div data-site-header-nav></div>
+  </div>
+</header>
+<main class="wrap">
+
+  <section class="hero">
+    <h2>OBBBA Overtime Deduction Calculator</h2>
+    <p class="hero-subtitle">Estimate your "No Tax on Overtime" deduction under IRC §225 — the One Big Beautiful Bill Act provision for 2025–2028</p>
+    <p class="cta-link"><a href="/">← Back to Overtime Pay Calculator</a></p>
+    <div class="adsense-unit" id="ad-obbba-top"></div>
+    <div class="form-card">
+      <form id="obbbaForm" onsubmit="event.preventDefault(); calculateOBBBA();">
+        <fieldset class="input-group">
+          <legend>Your Overtime Pay</legend>
+          <div class="field">
+            <label for="hourlyWage">Hourly Rate (USD)</label>
+            <input id="hourlyWage" type="number" min="0.01" step="0.01" placeholder="e.g. 25" value="25">
+          </div>
+          <div class="field">
+            <label for="overtimeHours">Overtime Hours per Week</label>
+            <input id="overtimeHours" type="number" min="0" step="0.5" placeholder="e.g. 10" value="10">
+          </div>
+          <div class="field">
+            <label for="weeksWorked">Weeks with Overtime per Year</label>
+            <input id="weeksWorked" type="number" min="1" max="52" step="1" placeholder="e.g. 50" value="50">
+          </div>
+        </fieldset>
+        <fieldset class="input-group">
+          <legend>Tax Filing Information</legend>
+          <div class="field">
+            <label for="filingStatus">Filing Status</label>
+            <select id="filingStatus">
+              <option value="single">Single / Head of Household</option>
+              <option value="mfj">Married Filing Jointly</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="magi">Estimated MAGI <span class="field-hint">(Modified Adjusted Gross Income)</span></label>
+            <input id="magi" type="number" min="0" step="100" placeholder="e.g. 75000" value="75000">
+          </div>
+          <div class="field">
+            <label for="taxBracket">Federal Tax Bracket</label>
+            <select id="taxBracket">
+              <option value="0.10">10%</option>
+              <option value="0.12">12%</option>
+              <option value="0.22" selected>22%</option>
+              <option value="0.24">24%</option>
+              <option value="0.32">32%</option>
+              <option value="0.35">35%</option>
+              <option value="0.37">37%</option>
+            </select>
+          </div>
+        </fieldset>
+        <button type="submit" class="btn">Calculate My Deduction</button>
+      </form>
+    </div>
+
+    <div id="calcResults" style="display:none;">
+      <h3 class="results-heading">Your OBBBA Overtime Deduction</h3>
+      <div class="result-grid">
+        <div class="result-row"><span class="result-label">Overtime rate (1.5×)</span><span class="result-value" id="resOvertimeRate">—</span></div>
+        <div class="result-row"><span class="result-label">Overtime premium rate (0.5×)</span><span class="result-value" id="resPremiumRate">—</span></div>
+        <div class="result-row"><span class="result-label">Annual overtime premium pay</span><span class="result-value" id="resAnnualPremium">—</span></div>
+        <div class="result-row separator"></div>
+        <div class="result-row"><span class="result-label">Maximum deduction cap</span><span class="result-value" id="resCap">—</span></div>
+        <div class="result-row" id="phaseoutRow" style="display:none;"><span class="result-label">Phase-out reduction</span><span class="result-value" id="resPhaseout">—</span></div>
+        <div class="result-row"><span class="result-label">Adjusted cap after phase-out</span><span class="result-value" id="resAdjustedCap">—</span></div>
+        <div class="result-row total"><span class="result-label">Your OBBBA overtime deduction</span><span class="result-value" id="resDeduction">—</span></div>
+        <div class="result-row net"><span class="result-label">Estimated federal tax savings</span><span class="result-value" id="resTaxSavings">—</span></div>
+      </div>
+      <p class="result-note">This deduction applies to federal income tax only. State tax treatment varies. The deduction covers the premium (0.5×) portion of FLSA-required overtime — not your full overtime pay.</p>
+    </div>
+    <div class="adsense-unit" id="ad-obbba-mid"></div>
+  </section>
+
+  <section class="section-card">
+    <h2>What This Calculator Does</h2>
+    <p>The One Big Beautiful Bill Act (OBBBA), signed July 4, 2025 as Public Law 119-21, created a new federal income tax deduction under <strong>IRC §225</strong> for qualified overtime compensation. For a worker earning $25/hour with 10 overtime hours per week, the deductible premium portion is $12.50/hour × 10 hours × 50 weeks = $6,250 — which reduces taxable income dollar for dollar. At the 22% bracket, that's roughly $1,375 back on your tax return.</p>
+    <p>This calculator estimates your deduction based on your hourly rate, overtime hours, filing status, and income level. It accounts for the $12,500/$25,000 cap and the MAGI-based phase-out that starts at $150,000 for single filers and $300,000 for joint filers.</p>
+  </section>
+
+  <section class="section-card">
+    <h2>Example Calculations</h2>
+    <table class="example-table">
+      <thead>
+        <tr><th>Scenario</th><th>Rate</th><th>OT hrs/wk</th><th>Weeks</th><th>Premium</th><th>Cap</th><th>Deduction</th><th>Savings (22%)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Warehouse worker, single</td>
+          <td>$20/hr</td>
+          <td>8</td>
+          <td>50</td>
+          <td>$4,000</td>
+          <td>$12,500</td>
+          <td>$4,000</td>
+          <td>$880</td>
+        </tr>
+        <tr>
+          <td>Nurse, MFJ, high OT</td>
+          <td>$35/hr</td>
+          <td>12</td>
+          <td>48</td>
+          <td>$10,080</td>
+          <td>$25,000</td>
+          <td>$10,080</td>
+          <td>$2,218</td>
+        </tr>
+        <tr>
+          <td>Factory worker, single, $160K MAGI</td>
+          <td>$30/hr</td>
+          <td>10</td>
+          <td>52</td>
+          <td>$7,800</td>
+          <td>$12,500</td>
+          <td>$11,500*</td>
+          <td>$2,530</td>
+        </tr>
+        <tr>
+          <td>Oil field worker, MFJ, $310K MAGI</td>
+          <td>$45/hr</td>
+          <td>15</td>
+          <td>50</td>
+          <td>$16,875</td>
+          <td>$25,000</td>
+          <td>$24,000*</td>
+          <td>$5,280</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>* Phase-out applies.</strong> The factory worker earning $160,000 MAGI exceeds the $150,000 single threshold by $10,000, reducing the cap by $1,000 to $11,500. The oil field worker's $310,000 MAGI exceeds the $300,000 MFJ threshold by $10,000, reducing the $25,000 cap by $1,000 to $24,000.</p>
+  </section>
+
+  <section class="section-card">
+    <h2>Decision Logic</h2>
+    <p>The deduction follows a straightforward eligibility flow:</p>
+    <ol>
+      <li><strong>Are you FLSA-eligible?</strong> → You must be a non-exempt employee covered by the Fair Labor Standards Act. Salaried-exempt workers, independent contractors, and FLSA-excluded employees do not qualify.</li>
+      <li><strong>Did you earn overtime pay beyond your regular rate?</strong> → Only the premium portion (the "half" in time-and-a-half) counts. If your employer pays $30/hr overtime on a $20/hr base, the qualifying amount is $10/hr — not $30/hr.</li>
+      <li><strong>Is the overtime FLSA-required?</strong> → Voluntary double-time or premium pay above 1.5× does <em>not</em> qualify. Only FLSA Section 7 overtime (hours over 40 in a workweek at 1.5×) is deductible.</li>
+      <li><strong>Check your cap</strong> → $12,500 single, $25,000 MFJ. Your deduction is the lesser of your premium pay or the cap.</li>
+      <li><strong>Check your MAGI</strong> → If above $150,000/$300,000, the cap is reduced by $100 for every $1,000 of excess MAGI. If your income is high enough, the deduction phases out entirely.</li>
+      <li><strong>Filing requirements</strong> → Married taxpayers must file jointly. You must include your SSN on the return.</li>
+    </ol>
+  </section>
+
+  <section class="section-card">
+    <h2>How This Tool Calculates the Result</h2>
+    <h3>Overtime Premium Calculation</h3>
+    <p>Your overtime premium is the extra "half" in time-and-a-half. For an hourly rate of $25 with 10 overtime hours per week over 50 weeks: premium = $25 × 0.5 × 10 × 50 = $6,250. This is the portion the IRS lets you deduct — not your full overtime earnings of $18,750.</p>
+
+    <h3>Cap Application</h3>
+    <p>The law sets a hard ceiling. Single filers: $12,500. Married filing jointly: $25,000. Your deduction is the smaller of your calculated premium or the cap. A worker with $15,000 in premium pay but a $12,500 cap can only deduct $12,500.</p>
+
+    <h3>MAGI Phase-Out</h3>
+    <p>Modified Adjusted Gross Income (MAGI) is your AGI plus any amounts excluded under IRC §§911, 931, or 933. If your MAGI exceeds $150,000 (single) or $300,000 (MFJ), the cap is reduced before it's applied to your premium. The reduction formula: <code>floor(excess MAGI ÷ $1,000) × $100</code>. For example, a single filer at $160,000 MAGI: excess = $10,000, reduction = floor(10) × $100 = $1,000. Adjusted cap = $12,500 − $1,000 = $11,500.</p>
+
+    <h3>Estimated Tax Savings</h3>
+    <p>The deduction reduces your taxable income — not your tax bill directly. Your actual savings depend on your marginal federal bracket. At 22%, a $6,250 deduction saves roughly $1,375 in federal income tax. This tool applies your selected bracket to the final deduction amount for an estimate.</p>
+  </section>
+
+  <section class="section-card">
+    <h2>Data Sourcing</h2>
+    <ul>
+      <li><strong>IRC §225</strong> — Qualified overtime compensation deduction, enacted via Public Law 119-21 (OBBBA), signed July 4, 2025</li>
+      <li><strong>IRS Fact Sheet FS-2025-03</strong> — Official summary of OBBBA tax provisions including "No Tax on Overtime" deduction limits and phase-out thresholds</li>
+      <li><strong>IRS Notice 2025-69</strong> — Guidance on claiming the overtime deduction for tax year 2025, including transition relief for W-2 reporting</li>
+      <li><strong>FLSA Section 7 (29 USC §207)</strong> — Federal overtime requirement: 1.5× pay for hours over 40 in a workweek</li>
+      <li><strong>MAGI definition</strong> — Per IRC §225: AGI plus exclusions under §§911, 931, 933</li>
+      <li><strong>Phase-out formula</strong> — $100 reduction per $1,000 MAGI over threshold, per statutory text</li>
+      <li>Values shown are for estimation purposes. The IRS may issue additional guidance affecting calculation methods. Consult a tax professional for your specific situation.</li>
+    </ul>
+  </section>
+
+  <section class="section-card">
+    <h2>Limitations</h2>
+    <p><strong>Federal income tax only.</strong> This deduction applies to your federal return. State tax treatment of OBBBA overtime deductions varies — most states have not conformed to this provision. Do not assume the same deduction on your state return.</p>
+    <p><strong>Premium portion only.</strong> You cannot deduct your full overtime pay — only the 0.5× premium portion required by the FLSA. If your employer pays double-time or a bonus shift rate above 1.5×, that extra amount does not qualify.</p>
+    <p><strong>FLSA-eligible hours only.</strong> Overtime worked by exempt employees, independent contractors, or in FLSA-excluded positions does not qualify. Only hours that trigger FLSA Section 7 requirements count.</p>
+    <p><strong>No state-specific rules.</strong> States like California have daily overtime thresholds that differ from the federal 40-hour weekly standard. This calculator uses the FLSA weekly definition. Your qualifying hours may differ under state law.</p>
+    <p><strong>MAGI estimate required.</strong> The phase-out depends on your modified adjusted gross income, which includes foreign income exclusions. Estimating this incorrectly could overstate or understate your deduction.</p>
+    <p><strong>Not tax advice.</strong> This is an estimation tool. Tax law is complex and subject to interpretation. Consult a CPA or enrolled agent before filing.</p>
+  </section>
+
+  <section class="section-card">
+    <h2>Common Scenarios</h2>
+    <ul>
+      <li><strong>Hourly factory worker with steady overtime.</strong> You work 8–12 overtime hours every week. At $22/hr with 10 OT hours over 50 weeks, your premium is $5,500 — well under the $12,500 cap. You deduct the full amount.</li>
+      <li><strong>Healthcare worker with variable OT.</strong> Some weeks you have 5 overtime hours, some weeks 20. Use your annual average. The deduction is calculated on total annual premium pay, not week-by-week.</li>
+      <li><strong>Married couple where both work overtime.</strong> The $25,000 MFJ cap is shared — it's not $12,500 per person. If your combined premium is $30,000, you still cap at $25,000.</li>
+      <li><strong>Higher-income earner hitting the phase-out.</strong> You're single earning $175,000. Excess MAGI = $25,000. Reduction = floor(25) × $100 = $2,500. Your adjusted cap is $10,000. If your premium is only $7,000, you still deduct the full $7,000 — the cap isn't binding.</li>
+      <li><strong>Worker earning above $275,000 (single) or $550,000 (MFJ).</strong> The phase-out eliminates the deduction entirely. At $150,000 + ($12,500 ÷ $100 × $1,000) = $275,000 MAGI for single filers, the cap reaches zero.</li>
+    </ul>
+  </section>
+
+  <section class="section-card">
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>What counts as "qualified overtime compensation"?</h3>
+    <p>Only the premium portion of FLSA-required overtime — the extra 0.5× on top of your regular rate. If you earn $20/hr and your overtime rate is $30/hr, the qualifying amount is $10/hr (the "half" in time-and-a-half). Your regular-rate portion of overtime pay is not deductible.</p>
+
+    <h3>Does my employer need to report this on my W-2?</h3>
+    <p>Yes — the OBBBA requires employers to report qualified overtime compensation on Form W-2. However, for tax year 2025, the IRS provided transition relief (Notice 2025-69) since W-2 forms were not updated in time. For 2026 onward, expect a new W-2 box or code showing your qualified overtime amount.</p>
+
+    <h3>Can I claim this if I'm self-employed?</h3>
+    <p>No. IRC §225 applies to individuals who receive qualified overtime compensation as employees. Self-employed individuals with no employer-employee relationship do not generate FLSA overtime and cannot claim this deduction. (The OBBBA tip deduction under §224 does have self-employed provisions, but the overtime deduction does not.)</p>
+
+    <h3>Do I need to itemize deductions to claim this?</h3>
+    <p>No. The OBBBA overtime deduction is available to both itemizing and non-itemizing taxpayers. It's an "above-the-line" deduction — you take it regardless of whether you use the standard deduction.</p>
+
+    <h3>What if I'm married but file separately?</h3>
+    <p>You cannot claim the deduction. IRC §225(e) requires married taxpayers to file jointly. If you're married filing separately, you're ineligible — even if only one spouse earned overtime.</p>
+
+    <h3>Does the deduction apply to my state taxes?</h3>
+    <p>In most states, no. Most states have not adopted conformity with IRC §225. As of early 2026, the OBBBA overtime deduction is a federal provision only. Check your state's tax code or consult a local tax professional.</p>
+
+    <h3>What happens after 2028?</h3>
+    <p>The deduction sunsets after tax year 2028 unless Congress extends it. As enacted, the OBBBA overtime deduction covers 2025–2028 only. After that, overtime pay reverts to being fully taxable at the federal level.</p>
+
+    <h3>Does double-time or holiday premium qualify?</h3>
+    <p>No. Only the FLSA-required 1.5× premium qualifies. Double-time (2×), holiday premiums, shift differentials, and any pay above the 1.5× FLSA requirement is not "qualified overtime compensation" under §225.</p>
+  </section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap" id="related-calculators"></div>
+  <div class="wrap" id="site-footer"></div>
+</footer>
+<script src="config.js"></script>
+<script src="network.js"></script>
+<script src="ads.js"></script>
+<script src="obbba-calculator.js"></script>
+</body>
+</html>

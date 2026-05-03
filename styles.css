@@ -166,6 +166,20 @@ select {
     color: #888;
 }
 
+/* CTA link for sub-pages */
+.cta-link {
+    margin: 16px 0 0;
+    font-size: 0.95rem;
+}
+.cta-link a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 600;
+}
+.cta-link a:hover {
+    text-decoration: underline;
+}
+
 /* Checkbox */
 .checkbox-group {
     display: flex;
