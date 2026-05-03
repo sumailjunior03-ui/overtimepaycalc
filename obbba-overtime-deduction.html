@@ -97,19 +97,20 @@
         <div class="result-row total"><span class="result-label">Your OBBBA overtime deduction</span><span class="result-value" id="resDeduction">—</span></div>
         <div class="result-row net"><span class="result-label">Estimated federal tax savings</span><span class="result-value" id="resTaxSavings">—</span></div>
       </div>
-      <p class="result-note">This deduction applies to federal income tax only. State tax treatment varies. The deduction covers the premium (0.5×) portion of FLSA-required overtime — not your full overtime pay.</p>
+      <p class="result-note">This deduction applies to federal income tax only. Overtime pay remains subject to Social Security and Medicare (FICA) withholding regardless of this deduction. The deduction covers the premium (0.5×) portion of FLSA-required overtime — not your full overtime pay.</p>
     </div>
     <div class="adsense-unit" id="ad-obbba-mid"></div>
   </section>
 
   <section class="section-card">
-    <h2>What This Calculator Does</h2>
+    <h2>What Your Overtime Deduction Actually Looks Like</h2>
     <p>The One Big Beautiful Bill Act (OBBBA), signed July 4, 2025 as Public Law 119-21, created a new federal income tax deduction under <strong>IRC §225</strong> for qualified overtime compensation. For a worker earning $25/hour with 10 overtime hours per week, the deductible premium portion is $12.50/hour × 10 hours × 50 weeks = $6,250 — which reduces taxable income dollar for dollar. At the 22% bracket, that's roughly $1,375 back on your tax return.</p>
     <p>This calculator estimates your deduction based on your hourly rate, overtime hours, filing status, and income level. It accounts for the $12,500/$25,000 cap and the MAGI-based phase-out that starts at $150,000 for single filers and $300,000 for joint filers.</p>
+    <p><strong>This deduction applies to federal income tax only.</strong> Overtime pay remains subject to Social Security and Medicare (FICA) withholding regardless of this deduction.</p>
   </section>
 
   <section class="section-card">
-    <h2>Example Calculations</h2>
+    <h2>Why the Cap Is Not Your Deduction</h2>
     <table class="example-table">
       <thead>
         <tr><th>Scenario</th><th>Rate</th><th>OT hrs/wk</th><th>Weeks</th><th>Premium</th><th>Cap</th><th>Deduction</th><th>Savings (22%)</th></tr>
@@ -142,8 +143,8 @@
           <td>52</td>
           <td>$7,800</td>
           <td>$12,500</td>
-          <td>$11,500*</td>
-          <td>$2,530</td>
+          <td>$7,800</td>
+          <td>$1,716</td>
         </tr>
         <tr>
           <td>Oil field worker, MFJ, $310K MAGI</td>
@@ -152,16 +153,16 @@
           <td>50</td>
           <td>$16,875</td>
           <td>$25,000</td>
-          <td>$24,000*</td>
-          <td>$5,280</td>
+          <td>$16,875</td>
+          <td>$3,713</td>
         </tr>
       </tbody>
     </table>
-    <p><strong>* Phase-out applies.</strong> The factory worker earning $160,000 MAGI exceeds the $150,000 single threshold by $10,000, reducing the cap by $1,000 to $11,500. The oil field worker's $310,000 MAGI exceeds the $300,000 MFJ threshold by $10,000, reducing the $25,000 cap by $1,000 to $24,000.</p>
+    <p><strong>Why the cap doesn't always matter.</strong> The factory worker earns $7,800 in premium — below the $12,500 single cap. Even after the phase-out reduces the cap to $11,500 (from $10,000 excess MAGI), $7,800 is still the deduction because <code>deduction = min(premium, adjusted cap)</code>. The oil field worker has $16,875 in premium but the MFJ cap is $25,000, reduced to $24,000 by the phase-out. Since $16,875 < $24,000, the full premium is deducted. The cap only bites when your premium exceeds it.</p>
   </section>
 
   <section class="section-card">
-    <h2>Decision Logic</h2>
+    <h2>Who Actually Qualifies</h2>
     <p>The deduction follows a straightforward eligibility flow:</p>
     <ol>
       <li><strong>Are you FLSA-eligible?</strong> → You must be a non-exempt employee covered by the Fair Labor Standards Act. Salaried-exempt workers, independent contractors, and FLSA-excluded employees do not qualify.</li>
@@ -174,7 +175,9 @@
   </section>
 
   <section class="section-card">
-    <h2>How This Tool Calculates the Result</h2>
+    <h2>Why FICA Still Applies</h2>
+    <p><strong>FICA is not reduced.</strong> Your overtime pay — including the premium portion — is still subject to the 7.65% employee share of Social Security and Medicare. The OBBBA deduction only reduces your federal income tax, not payroll taxes. So while a $6,250 deduction saves ~$1,375 in income tax at 22%, you still pay FICA on the full overtime earnings.</p>
+
     <h3>Overtime Premium Calculation</h3>
     <p>Your overtime premium is the extra "half" in time-and-a-half. For an hourly rate of $25 with 10 overtime hours per week over 50 weeks: premium = $25 × 0.5 × 10 × 50 = $6,250. This is the portion the IRS lets you deduct — not your full overtime earnings of $18,750.</p>
 
@@ -192,8 +195,9 @@
     <h2>Data Sourcing</h2>
     <ul>
       <li><strong>IRC §225</strong> — Qualified overtime compensation deduction, enacted via Public Law 119-21 (OBBBA), signed July 4, 2025</li>
-      <li><strong>IRS Fact Sheet FS-2025-03</strong> — Official summary of OBBBA tax provisions including "No Tax on Overtime" deduction limits and phase-out thresholds</li>
+      <li><strong>IRS Fact Sheet FS-2026-01</strong> — Updated summary of OBBBA tax provisions including "No Tax on Overtime" deduction limits and phase-out thresholds</li>
       <li><strong>IRS Notice 2025-69</strong> — Guidance on claiming the overtime deduction for tax year 2025, including transition relief for W-2 reporting</li>
+      <li><strong>W-2 Box 12 Code TT</strong> — Reporting code for qualified overtime compensation on Form W-2 (effective tax year 2026)</li>
       <li><strong>FLSA Section 7 (29 USC §207)</strong> — Federal overtime requirement: 1.5× pay for hours over 40 in a workweek</li>
       <li><strong>MAGI definition</strong> — Per IRC §225: AGI plus exclusions under §§911, 931, 933</li>
       <li><strong>Phase-out formula</strong> — $100 reduction per $1,000 MAGI over threshold, per statutory text</li>
@@ -212,7 +216,7 @@
   </section>
 
   <section class="section-card">
-    <h2>Common Scenarios</h2>
+    <h2>Real-World Situations</h2>
     <ul>
       <li><strong>Hourly factory worker with steady overtime.</strong> You work 8–12 overtime hours every week. At $22/hr with 10 OT hours over 50 weeks, your premium is $5,500 — well under the $12,500 cap. You deduct the full amount.</li>
       <li><strong>Healthcare worker with variable OT.</strong> Some weeks you have 5 overtime hours, some weeks 20. Use your annual average. The deduction is calculated on total annual premium pay, not week-by-week.</li>
